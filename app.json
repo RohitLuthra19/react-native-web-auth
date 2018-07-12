@@ -1,0 +1,14 @@
+{
+  "expo": {
+    "name": "restman",
+    "icon": "./public/assets/app-icon.png",
+    "version": "0.0.1",
+    "sdkVersion": "27.0.0",
+    "ios": {
+      "bundleIdentifier": "com.demo.restman"
+    },
+    "android": {
+      "package": "com.demo.restman"
+    }
+  }
+}
