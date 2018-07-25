@@ -8,30 +8,37 @@ import { AuthService } from '../App';
 class Dashboard extends React.Component {
     constructor(props) {
         super(props);
-        console.log(props);
+        this.state = {
+            userEmail: '',
+        };
     }
 
     componentWillMount() {
+        this._retrieveData();
+    }
+
+    _retrieveData = async () => {
         try {
             if (AuthService.isAuthenticated == true) {
-                AsyncStorage.getItem('userEmail').then((value) => {
-                    if (value !== null) {
-                        console.log(value);
-                        this.props.history.push('/dashboard');
-                    }
-                });
+                const value = await AsyncStorage.getItem('userEmail');
+
+                if (value !== null) {
+                    this.setState({
+                        userEmail: value
+                    })
+                }
+
             }
         }
         catch (error) {
-            console.log(error );
+            console.log(error);
         }
     }
-
     render() {
         return (
 
             <View style={styles.container}>
-                <Text style={styles.heading}>Welcome to Dashboard Page!</Text><br />
+                <Text style={styles.heading}>Welcome {this.state.userEmail} to Dashboard Page!</Text><br />
 
                 <button onClick={() => {
                     AuthService.logout(() => this.props.history.push("/"));

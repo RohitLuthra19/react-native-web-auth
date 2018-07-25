@@ -21,9 +21,15 @@ const SecretRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
     AuthService.isAuthenticated === true
       ? <Component {...props} />
-      : <Redirect to='/' />
+      : <Redirect to={{
+        pathname: '/',
+        state: { from: props.location }
+      }} />
   )} />
 );
+
+{/* <Redirect to='/' /> */ }
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
