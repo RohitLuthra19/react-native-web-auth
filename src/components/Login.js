@@ -9,7 +9,6 @@ import Dashboard from './Dashboard';
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
-    console.log("Login");
     this.state = {
       userEmail: '',
       password: ''
@@ -23,7 +22,6 @@ export default class Login extends React.Component {
 
       try {
         AsyncStorage.setItem('userEmail', userEmail);
-        this.props.authenticated = true;
         this.props.history.push('/dashboard');
       } catch (error) {
         console.log("Error Saving data.")

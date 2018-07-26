@@ -7,7 +7,6 @@ import { history } from './history';
 import AuthRoute from './AuthRoute';
 import UnauthRoute from './UnauthRoute';
 
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -21,8 +20,8 @@ export default class App extends React.Component {
           <SecretRoute path="/dashboard" component={Dashboard} />
           <Route render={() => (<div> Sorry, this page does not exist. </div>)} /> */}
           <Route exact path="/" render={() => (<div> Welcome to admin </div>)} />
-          <AuthRoute exact path="/dashboard" component={Dashboard} redirectTo="/login" authenticated={this.props.authenticated} />
-          <UnauthRoute exact path="/login" component={Login} redirectTo="/" authenticated={this.props.authenticated} />
+          <AuthRoute exact path="/dashboard" component={Dashboard} redirectTo="/login" authenticated={true} />
+          <UnauthRoute exact path="/login" component={Login} redirectTo="/" authenticated={false} />
         </Switch>
       </Router>
     );
