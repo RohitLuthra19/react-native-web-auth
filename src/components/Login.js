@@ -4,16 +4,15 @@ import { View, Text, TextInput, TouchableOpacity, Button, StyleSheet, StatusBar,
 import { AsyncStorage } from "react-native"
 
 import Dashboard from './Dashboard';
-import { AuthService } from '../App';
 
 
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
+    console.log("Login");
     this.state = {
       userEmail: '',
-      password: '',
-      redirectToReferrer: false
+      password: ''
     };
   }
 
@@ -21,25 +20,20 @@ export default class Login extends React.Component {
     const userEmail = this.state.userEmail;
     const password = this.state.password;
     if (userEmail == "rohit" && password == "rohit") {
-      AuthService.authenticate(() => {
-        try {
-          AsyncStorage.setItem('userEmail', userEmail);
-          this.props.history.push('/dashboard');
-        } catch (error) {
-          console.log("Error Saving data.")
-        }
-      });
+
+      try {
+        AsyncStorage.setItem('userEmail', userEmail);
+        this.props.authenticated = true;
+        this.props.history.push('/dashboard');
+      } catch (error) {
+        console.log("Error Saving data.")
+      }
+
     } else {
       console.log("Wrong email and password!")
     }
   }
   render() {
-    const { from } = this.props.location.state || { from: { pathname: "/" } };
-    const { redirectToReferrer } = this.state;
-
-    if (redirectToReferrer) {
-      return <Redirect to={from} />;
-    }
     return (
       <View style={styles.page}>
         <View style={styles.container}>

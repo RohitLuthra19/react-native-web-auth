@@ -5,49 +5,21 @@ import { AsyncStorage } from "react-native"
 import { AuthService } from '../App';
 
 
-class Dashboard extends React.Component {
+export default class Error extends React.Component {
     constructor(props) {
         super(props);
-        console.log("Dashboard");
-        this.state = {
-            userEmail: '',
-        };
-    }
-
-    componentDidMount() {
-        this._retrieveData();
-    }
-
-    _retrieveData = async () => {
-        try {
-            const value = await AsyncStorage.getItem('userEmail');
-
-            if (value !== null) {
-                this.setState({
-                    userEmail: value
-                })
-            }
-        }
-        catch (error) {
-            console.log(error);
-        }
     }
     render() {
+
         return (
 
             <View style={styles.container}>
-                <Text style={styles.heading}>Welcome {this.state.userEmail} to Dashboard Page!</Text><br />
-
-                <button onClick={() => {
-                    this.props.history.push("/");
-                }}>Sign out</button>
+                <Text style={styles.heading}>Sorry, this page does not exist.</Text><br />
             </View>
 
         );
     }
 }
-
-export default Dashboard;
 
 const styles = StyleSheet.create({
     page: {
