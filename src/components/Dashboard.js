@@ -32,6 +32,15 @@ class Dashboard extends React.Component {
             console.log(error);
         }
     }
+
+    _removeData = async () => {
+        try {
+            await AsyncStorage.removeItem('userEmail');
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
     render() {
         return (
 
@@ -39,6 +48,7 @@ class Dashboard extends React.Component {
                 <Text style={styles.heading}>Welcome {this.state.userEmail} to Dashboard Page!</Text><br />
 
                 <button onClick={() => {
+                    this._removeData();
                     this.props.history.push("/");
                 }}>Sign out</button>
             </View>
